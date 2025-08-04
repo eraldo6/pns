@@ -1,0 +1,22 @@
+# Privacy Network System (PNS) - Requirements
+# This system uses only Python standard library modules
+# No external packages required
+
+# Python version requirement
+# Python 3.8+ (for dataclasses support)
+
+# Standard library modules used:
+# - uuid
+# - hashlib
+# - secrets
+# - json
+# - datetime
+# - dataclasses
+# - argparse
+# - typing
+# - enum
+# - sys
+# - os
+
+# No external dependencies required
+# All functionality implemented using Python standard library only 

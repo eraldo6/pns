@@ -1,0 +1,17 @@
+{
+  "export_timestamp": "2025-08-04T23:17:46.976678",
+  "total_proofs": 0,
+  "statistics": {
+    "total_proofs": 0,
+    "verified_proofs": 0,
+    "unverified_proofs": 0,
+    "verification_rate": 0,
+    "proof_types": {
+      "range_proof": 0,
+      "equality_proof": 0,
+      "membership_proof": 0,
+      "balance_proof": 0
+    }
+  },
+  "proofs": []
+}

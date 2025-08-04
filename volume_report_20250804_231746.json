@@ -1,0 +1,818 @@
+{
+  "report_timestamp": "2025-08-04T23:17:46.974961",
+  "statistics": {
+    "total_entries": 50,
+    "anonymous_entries": 25,
+    "non_anonymous_entries": 25,
+    "aml_flagged_entries": 0,
+    "total_value": 2675,
+    "anonymous_value": 1400,
+    "non_anonymous_value": 1275,
+    "anonymous_percentage": 50.0,
+    "value_anonymous_percentage": 52.336448598130836
+  },
+  "anonymous_entries": [
+    {
+      "entry_id": "1",
+      "transaction_id": "45326907-7a5f-4225-805d-52780716f032",
+      "sender_wallet_id": "4e4e3d5e-11c5-4edf-b7ca-0ad17f955214",
+      "receiver_wallet_id": "f732deb3-4f6c-4df8-8cb9-dcb64cfa7a9e",
+      "token_id": "6325f1d2-d9a3-4f54-a6a7-4fa4df11f54d",
+      "value": 100,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:12:26.817674",
+      "metadata": {
+        "voucher_id": "8ad9c29b-87c7-4388-b212-21e91ec5ccbc",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "3",
+      "transaction_id": "fa74cc39-9c94-4c5b-962a-6b603ebcb0f1",
+      "sender_wallet_id": "e1091a27-5d12-486b-9a5e-db5ed5d4010e",
+      "receiver_wallet_id": "50518147-14c6-4e52-9e19-29cd5fb26f6c",
+      "token_id": "59df6b41-9153-4014-8b58-694e2d4a013c",
+      "value": 50,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:12:32.297656",
+      "metadata": {
+        "voucher_id": "e24d9ddd-718c-4e46-a202-ef468cda79bd",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "5",
+      "transaction_id": "fe115ec6-cac8-44d6-bf78-3e29671a1901",
+      "sender_wallet_id": "04b4ee20-0951-4015-8e66-29635f513653",
+      "receiver_wallet_id": "5d897d8e-ee7a-43a0-83e9-bd3f84cf871b",
+      "token_id": "bbb154d4-3993-4cdd-b2d9-a1aba4af59ad",
+      "value": 100,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:12:32.300065",
+      "metadata": {
+        "voucher_id": "60a8bebb-fb4d-41e4-af00-0e683334c76a",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "7",
+      "transaction_id": "1a4c73b2-f4f4-4a07-acd9-9139d4e93ef2",
+      "sender_wallet_id": "79b94390-c8d1-414b-96ab-535092d99d0b",
+      "receiver_wallet_id": "afa6e321-9dc5-4eb5-a469-55dae696e1db",
+      "token_id": "738b98d3-4acd-4cf8-9064-a7c85e18b17c",
+      "value": 50,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:13:10.567699",
+      "metadata": {
+        "voucher_id": "4014537f-6253-49e4-aa67-9c37a49a4889",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "9",
+      "transaction_id": "test_tx_123",
+      "sender_wallet_id": "sender_123",
+      "receiver_wallet_id": "receiver_456",
+      "token_id": "token_789",
+      "value": 0,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-01-01T12:00:00",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "11",
+      "transaction_id": "4a923146-0f6d-47c5-b470-063db3340273",
+      "sender_wallet_id": "827733bf-2986-4eee-821d-1b9fb6e6af94",
+      "receiver_wallet_id": "9acab64c-7615-4260-b368-4f2922d38659",
+      "token_id": "42fb6d0e-293e-40aa-8c26-20865bd99429",
+      "value": 100,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:13:10.576541",
+      "metadata": {
+        "voucher_id": "27444c41-af48-4141-a84e-15419d746b6b",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "13",
+      "transaction_id": "2440fe58-4ebd-4c8c-b1e1-a8846ea0e2b9",
+      "sender_wallet_id": "157b9d88-b11f-43c2-9504-12f5735a8ebd",
+      "receiver_wallet_id": "fa0a0d03-25b3-453a-9d16-c374eab03e21",
+      "token_id": "ffa58ee3-c92e-4d13-8eb2-15ec0299154d",
+      "value": 50,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:13:23.953375",
+      "metadata": {
+        "voucher_id": "503311f7-0e71-498e-a545-8a500a1c2e60",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "15",
+      "transaction_id": "test_tx_123",
+      "sender_wallet_id": "sender_123",
+      "receiver_wallet_id": "receiver_456",
+      "token_id": "token_789",
+      "value": 0,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-01-01T12:00:00",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "17",
+      "transaction_id": "8ef87147-6485-463c-bca7-6a4bcc626321",
+      "sender_wallet_id": "0ef29de3-c361-4d95-888b-e2c78b864c39",
+      "receiver_wallet_id": "aa662880-7da5-4a12-a5b0-f010bc981b75",
+      "token_id": "8c45eb57-64c1-4951-85c3-0ab445d8134d",
+      "value": 100,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:13:23.958051",
+      "metadata": {
+        "voucher_id": "dc8625cd-0bd3-4c27-8be6-70e8de299771",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "19",
+      "transaction_id": "482e29be-832d-4724-9847-0a5f159fc511",
+      "sender_wallet_id": "21193130-7179-4332-b94d-2564f86095de",
+      "receiver_wallet_id": "56489d1a-1463-44ed-a0c6-d0d71f656e6a",
+      "token_id": "36b1f696-dd4e-483e-b420-b48c8537a5ff",
+      "value": 50,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:13:38.516739",
+      "metadata": {
+        "voucher_id": "33124f80-60cc-43ea-9d05-ef2bafab7981",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "21",
+      "transaction_id": "test_tx_123",
+      "sender_wallet_id": "sender_123",
+      "receiver_wallet_id": "receiver_456",
+      "token_id": "token_789",
+      "value": 0,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-01-01T12:00:00",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "23",
+      "transaction_id": "329011c8-0b85-4d18-b9f5-4d62082586ad",
+      "sender_wallet_id": "5975e397-c9be-414c-ba8c-35e5e6b070f3",
+      "receiver_wallet_id": "c8a7e29d-e1a6-4869-9595-9da0e7a1a793",
+      "token_id": "1fd16f6c-2cbd-4fe0-b826-d6d6dbac7ffd",
+      "value": 100,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:13:38.532592",
+      "metadata": {
+        "voucher_id": "ce818d27-46e0-4fec-9717-6bb2ce4d3904",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "25",
+      "transaction_id": "ae7e72d6-a95b-4306-a285-d6029e2dd95a",
+      "sender_wallet_id": "6a005142-e923-448c-9b7f-fb3a5459e527",
+      "receiver_wallet_id": "9518b35b-987d-4c68-9d5a-eaa2cd3ae182",
+      "token_id": "9569ee7c-9c9f-4a10-a9e1-b1970c67dfc8",
+      "value": 50,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:14:15.691335",
+      "metadata": {
+        "voucher_id": "e5813ff4-626b-4bb7-9dfd-a77943f96ea9",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "27",
+      "transaction_id": "test_tx_123",
+      "sender_wallet_id": "sender_123",
+      "receiver_wallet_id": "receiver_456",
+      "token_id": "token_789",
+      "value": 0,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-01-01T12:00:00",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "29",
+      "transaction_id": "e9f5d4cb-c9ea-4892-aa1e-fdf70e5d43ce",
+      "sender_wallet_id": "cc166aca-8b07-4f12-a2ee-b0685e5a1756",
+      "receiver_wallet_id": "7931e2a9-aa94-4737-8c7e-6254f25d808b",
+      "token_id": "b8e6933b-ff46-42bb-815d-3859f6199bab",
+      "value": 100,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:14:15.697441",
+      "metadata": {
+        "voucher_id": "db90e1f0-0bdf-42f6-8923-61940fbff460",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "31",
+      "transaction_id": "8bc5bd6b-1f3f-496e-9331-b499646be5ea",
+      "sender_wallet_id": "1feeebb7-4df7-4752-aeb1-69d4f22bc95e",
+      "receiver_wallet_id": "6d2cd627-25db-46d2-8cd8-dbc28e226472",
+      "token_id": "7f7314ce-e619-4e9b-91a9-fdbc91101dde",
+      "value": 50,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:15:40.183250",
+      "metadata": {
+        "voucher_id": "3d78e592-d9ee-4236-a30a-21c149956e12",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "33",
+      "transaction_id": "test_tx_123",
+      "sender_wallet_id": "sender_123",
+      "receiver_wallet_id": "receiver_456",
+      "token_id": "token_789",
+      "value": 0,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-01-01T12:00:00",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "35",
+      "transaction_id": "3d73e60a-5f33-4cd7-9ba3-088b2111b253",
+      "sender_wallet_id": "2b2abdc9-89a0-43b0-be85-b9cd9c51718a",
+      "receiver_wallet_id": "d157a437-7437-400c-893f-597a31bf3ed4",
+      "token_id": "6737f3a9-4330-4958-9784-4068362eca0b",
+      "value": 100,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:15:40.190530",
+      "metadata": {
+        "voucher_id": "97eb93b5-442e-4492-a1a6-88d3c5899f7c",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "37",
+      "transaction_id": "c0843208-f980-4ee4-84c3-e5b96505564d",
+      "sender_wallet_id": "d1861939-891e-4b01-b2c3-ee410187ecdc",
+      "receiver_wallet_id": "711c053e-a4e1-44ba-ba05-b1a6da322bfd",
+      "token_id": "567af8be-93fa-4a90-ad62-a70a5a466656",
+      "value": 50,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:16:03.781913",
+      "metadata": {
+        "voucher_id": "eb7a2591-5b70-4bc3-96f7-4bc159c23ce9",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "39",
+      "transaction_id": "test_tx_123",
+      "sender_wallet_id": "sender_123",
+      "receiver_wallet_id": "receiver_456",
+      "token_id": "token_789",
+      "value": 0,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-01-01T12:00:00",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "41",
+      "transaction_id": "555084ee-0673-4196-b50f-5e38bd07b9d0",
+      "sender_wallet_id": "cbf2e857-f2b7-4885-9078-ab38ecbcf783",
+      "receiver_wallet_id": "adf0dd37-ac69-42fb-949a-59c0e440af29",
+      "token_id": "615524bb-43d9-4511-b1f5-8c6cda6f1a10",
+      "value": 100,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:16:03.789314",
+      "metadata": {
+        "voucher_id": "844c63e9-f9ca-4700-a670-fa60c2d80c3a",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "43",
+      "transaction_id": "ccb63bff-05e1-4dcb-9c28-c50923cfbbba",
+      "sender_wallet_id": "69e99111-d2cd-4045-a83f-0026fa19176d",
+      "receiver_wallet_id": "c1dee7e6-f652-49a0-998e-59f887802385",
+      "token_id": "f8e77370-1f0d-4bb1-bfc1-fd89957fcfe7",
+      "value": 100,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:17:46.728791",
+      "metadata": {
+        "voucher_id": "fd438c08-9e65-40fa-a8dd-6de8d949a2c9",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "45",
+      "transaction_id": "f8a9bde5-f353-401c-88b1-14dd97f6ca5c",
+      "sender_wallet_id": "30b382cc-ed66-4171-af0a-9a280360ec54",
+      "receiver_wallet_id": "504adf39-ae9e-4805-9756-cbe3935bc5e3",
+      "token_id": "d4070a17-5eaf-4c0d-8388-0b227aa2a8a5",
+      "value": 50,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:17:46.848807",
+      "metadata": {
+        "voucher_id": "174445da-a7d4-48e4-900b-70179a5f7141",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "47",
+      "transaction_id": "test_tx_123",
+      "sender_wallet_id": "sender_123",
+      "receiver_wallet_id": "receiver_456",
+      "token_id": "token_789",
+      "value": 0,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-01-01T12:00:00",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "49",
+      "transaction_id": "fb88de3e-5849-4c08-909a-827ad0514afb",
+      "sender_wallet_id": "25021c3d-c042-407a-8e24-799af3979273",
+      "receiver_wallet_id": "b0891c6e-57b7-4e07-9fc0-010c144c12fe",
+      "token_id": "43c189df-50f7-40e6-abf9-b6ceebbf76c2",
+      "value": 100,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-04T23:17:46.857182",
+      "metadata": {
+        "voucher_id": "557bd78c-b93a-4581-9447-86b5ef0ffc0e",
+        "status": "completed",
+        "aml_reason": null
+      }
+    }
+  ],
+  "non_anonymous_entries": [
+    {
+      "entry_id": "0",
+      "transaction_id": "1ef07a90-2a84-4752-99f0-d01a730863f3",
+      "sender_wallet_id": "68acb512-b225-4588-94bc-df782613b012",
+      "receiver_wallet_id": "4e4e3d5e-11c5-4edf-b7ca-0ad17f955214",
+      "token_id": "6eb3648a-9853-4608-90eb-47df63408fbf",
+      "value": 50,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:12:26.816742",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "2",
+      "transaction_id": "14752d38-aabd-4397-a125-c83d75cd34c2",
+      "sender_wallet_id": "d63c9f07-d927-474c-8eea-677382de4b99",
+      "receiver_wallet_id": "298b629a-6962-4a7e-8ece-4e2fe21889f5",
+      "token_id": "4a543a20-d05b-46f1-aee0-8ac9beb1783c",
+      "value": 75,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:12:32.296726",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "4",
+      "transaction_id": "398f02e5-92ea-4fd3-b075-fc76132228b3",
+      "sender_wallet_id": "097c4cd2-e292-4255-a93b-4b1f7ae7ead9",
+      "receiver_wallet_id": "04b4ee20-0951-4015-8e66-29635f513653",
+      "token_id": "98eee3d7-75f7-42bf-9656-939ade772ae6",
+      "value": 50,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:12:32.299597",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "6",
+      "transaction_id": "fd333938-5e27-4874-96c0-9c4388c360bd",
+      "sender_wallet_id": "429c86f4-c84d-4ec1-9204-7af04c7a1471",
+      "receiver_wallet_id": "8a6d47d8-2eae-488d-9e01-f1e57ad11e7a",
+      "token_id": "7ceae0ba-d9e6-4875-994e-510aa0eb1635",
+      "value": 75,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:13:10.565249",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "8",
+      "transaction_id": "a266d6f1-0bcc-4d44-baa7-82270591c2ce",
+      "sender_wallet_id": "8390bf22-9d6d-41d1-99d4-23d104be091e",
+      "receiver_wallet_id": "83f07ec9-979b-40d6-95d4-261bd3b4a6c0",
+      "token_id": "c07eca6e-2daa-4948-841f-d9274188dcc3",
+      "value": 25,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:13:10.570291",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "10",
+      "transaction_id": "2e0666e0-48df-436f-ba01-4819c70367f4",
+      "sender_wallet_id": "34a92dbb-27c4-4fe2-becd-6ccfdb064f5c",
+      "receiver_wallet_id": "827733bf-2986-4eee-821d-1b9fb6e6af94",
+      "token_id": "f9ba6122-d68d-4008-965f-ada0bd9b26aa",
+      "value": 50,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:13:10.574696",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "12",
+      "transaction_id": "9dc4b283-855e-48b8-a24e-093252ba6745",
+      "sender_wallet_id": "6317a88d-a4aa-4e00-a604-2a727eb78cf4",
+      "receiver_wallet_id": "6845efb5-982e-444f-803a-a9765739c6be",
+      "token_id": "5ab7f147-864f-4f32-928a-4dfe254f8e44",
+      "value": 75,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:13:23.951225",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "14",
+      "transaction_id": "c897e213-8c72-4086-b353-a28b2d82dec4",
+      "sender_wallet_id": "b1a40ba8-0a83-4c6a-a8e6-ef270d2aa546",
+      "receiver_wallet_id": "636bca6c-5605-41ef-9629-e5891e9a8442",
+      "token_id": "f464b2f8-ed2a-42e3-b5ca-8b48519f4e8e",
+      "value": 25,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:13:23.954464",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "16",
+      "transaction_id": "f08347bd-ead5-4394-9b92-058ad559c14f",
+      "sender_wallet_id": "0c2128ee-a9c0-4559-b3d1-4b8f98b8dc49",
+      "receiver_wallet_id": "0ef29de3-c361-4d95-888b-e2c78b864c39",
+      "token_id": "3d5a9030-e98e-4b2b-8bc7-94885a410bd4",
+      "value": 50,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:13:23.957275",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "18",
+      "transaction_id": "5eab63ce-db17-4b95-9281-8258ea44a90d",
+      "sender_wallet_id": "7d334d1b-c7ca-4604-b808-e3e04ef60ee8",
+      "receiver_wallet_id": "a02e3677-198b-4dca-a37e-a874aaa3cccd",
+      "token_id": "e9808124-3669-42da-91f6-1415d7a6d812",
+      "value": 75,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:13:38.513914",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "20",
+      "transaction_id": "a9c7192d-9d89-4fbd-a61e-6ad571a5ffbf",
+      "sender_wallet_id": "43a718ff-b4ad-4cb8-8ad8-6785734a13e5",
+      "receiver_wallet_id": "c6d676c8-c610-45eb-aa62-c8c61a4d0c50",
+      "token_id": "e12f08b5-bb6b-4311-b125-81bdd06bf77a",
+      "value": 25,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:13:38.519079",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "22",
+      "transaction_id": "151ac81e-f449-4a55-bf36-a9ab19adad33",
+      "sender_wallet_id": "3acdabaa-adc6-4c73-96af-bebcfdc2d5d1",
+      "receiver_wallet_id": "5975e397-c9be-414c-ba8c-35e5e6b070f3",
+      "token_id": "bf4a0ac6-a9e3-4adc-82d2-d2e3eaddb537",
+      "value": 50,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:13:38.531034",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "24",
+      "transaction_id": "88b70e6f-94c0-40f0-9fa3-66d931f52166",
+      "sender_wallet_id": "c0d95257-b2b1-4ad4-b625-124d9d484b36",
+      "receiver_wallet_id": "43bc1f49-b530-45ae-b219-d37f69404678",
+      "token_id": "eb5570dd-d6c7-4aa1-9ad3-969c3df88430",
+      "value": 75,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:14:15.688588",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "26",
+      "transaction_id": "fc7533c7-095a-4f9a-ab9d-f6f795f56a55",
+      "sender_wallet_id": "0a94b07b-bb69-4213-b10b-a0e112d849a4",
+      "receiver_wallet_id": "cb180daf-742e-42d2-a14e-cb8592305ac9",
+      "token_id": "f1c1f2bd-c3c0-4af0-8de9-501accd0225e",
+      "value": 25,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:14:15.693200",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "28",
+      "transaction_id": "21109490-72fe-4ca7-8459-615930b9c3bf",
+      "sender_wallet_id": "6fa86051-1f3f-4106-99f0-ae1106c8e654",
+      "receiver_wallet_id": "cc166aca-8b07-4f12-a2ee-b0685e5a1756",
+      "token_id": "9b3ea311-c5b4-4ccc-9b00-e2d07fa79d06",
+      "value": 50,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:14:15.696538",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "30",
+      "transaction_id": "d6f91ca2-16d1-4adc-a4b6-3cdd9c8f1a64",
+      "sender_wallet_id": "b3535932-c810-430e-92d5-f58fe627ec53",
+      "receiver_wallet_id": "fa34c20f-79c4-4f2a-a413-0519008f6530",
+      "token_id": "7a7465b4-2856-460e-b322-a8bf72291a20",
+      "value": 75,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:15:40.180822",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "32",
+      "transaction_id": "dcea46c7-cfe5-4a9c-b364-5575f30e1acb",
+      "sender_wallet_id": "096a67fc-d7d1-40fb-a562-8c3b223fc0b6",
+      "receiver_wallet_id": "b2128f6e-4fd2-4979-97eb-490b5774989c",
+      "token_id": "95973c60-969b-45e4-8546-fd89534b6fd7",
+      "value": 25,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:15:40.184958",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "34",
+      "transaction_id": "05f3a1d2-6abe-4208-a260-0f2db84cebba",
+      "sender_wallet_id": "e8743c9f-fe0f-4e4d-8075-57a5bdf9e356",
+      "receiver_wallet_id": "2b2abdc9-89a0-43b0-be85-b9cd9c51718a",
+      "token_id": "cf548765-bcfc-425c-9b1e-957ba0bbb185",
+      "value": 50,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:15:40.188907",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "36",
+      "transaction_id": "07a02069-215e-4171-b65d-db2cb48ef51c",
+      "sender_wallet_id": "e7e86c23-1536-428f-8c58-6ed58077f1be",
+      "receiver_wallet_id": "7d33d469-419a-4a68-9cc1-bcd959dc592b",
+      "token_id": "4939c95a-dab1-4a15-a616-5dec82da292d",
+      "value": 75,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:16:03.779599",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "38",
+      "transaction_id": "dc739da0-7092-4cdf-b380-90b4fc8406f2",
+      "sender_wallet_id": "51d7a8e0-6db1-43c6-b80b-6e4d34eb1660",
+      "receiver_wallet_id": "61b07b27-e22b-4c1f-823f-fcb678a1b413",
+      "token_id": "44f0258a-f0b1-4921-9d86-5d8ed7b3469d",
+      "value": 25,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:16:03.783378",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "40",
+      "transaction_id": "e8c3fcb2-c60d-4945-8399-cf3195ee0aeb",
+      "sender_wallet_id": "ab496ff1-77d8-4629-8cf5-6ee25d7d5b30",
+      "receiver_wallet_id": "cbf2e857-f2b7-4885-9078-ab38ecbcf783",
+      "token_id": "8dfec091-8d42-459d-b9d3-ff946e4bbb83",
+      "value": 50,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:16:03.788189",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "42",
+      "transaction_id": "bf653d5b-f2c9-4ca7-829a-9f29abdc664a",
+      "sender_wallet_id": "467485b6-28b5-43d3-a87b-ebebdff6ffd2",
+      "receiver_wallet_id": "69e99111-d2cd-4045-a83f-0026fa19176d",
+      "token_id": "06d35209-26e5-481d-b287-4c090ce9accc",
+      "value": 50,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:17:46.725362",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "44",
+      "transaction_id": "d7790531-1cd3-4238-98a2-64e51ae1e6d2",
+      "sender_wallet_id": "ee9ffa1f-8569-48bf-b3d8-0e25770b8f84",
+      "receiver_wallet_id": "71e5aabe-1601-4b4a-a195-4d629a1089e8",
+      "token_id": "a4c281ae-90ad-494c-936c-fd1790d8c1d1",
+      "value": 75,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:17:46.846011",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "46",
+      "transaction_id": "4407012c-4576-4d7f-8473-952e0803cd08",
+      "sender_wallet_id": "91202bbf-2a3c-43e2-8e05-bf661fca9165",
+      "receiver_wallet_id": "348035ce-6551-4eef-8ff5-9800c0fc7ca3",
+      "token_id": "8092bb66-0e19-45ae-b135-291580fb7335",
+      "value": 25,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:17:46.851431",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "48",
+      "transaction_id": "8bf12925-9515-4978-bf1d-cfc10d035e09",
+      "sender_wallet_id": "655f82fd-5a3e-4906-9bee-92e70dfff215",
+      "receiver_wallet_id": "25021c3d-c042-407a-8e24-799af3979273",
+      "token_id": "a7369879-9253-4180-bbee-884db6240ee6",
+      "value": 50,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-04T23:17:46.855686",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    }
+  ]
+}
