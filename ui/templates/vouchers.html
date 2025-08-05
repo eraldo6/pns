@@ -156,7 +156,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-warning" onclick="testVoucherCreation()">
+                <button type="button" class="btn btn-warning" onclick="confirmIssueVoucher(event)">
                     <i class="fas fa-ticket-alt me-2"></i>
                     Issue Voucher
                 </button>
@@ -197,15 +197,7 @@
         modal.show();
     }
     
-    function testVoucherCreation() {
-        alert('Voucher button clicked! Function is working.');
-        console.log('testVoucherCreation called');
-        
-        // Now call the actual function
-        confirmIssueVoucher();
-    }
-    
-    function confirmIssueVoucher() {
+    function confirmIssueVoucher(event) {
         const valueLimit = document.getElementById('voucherLimit').value;
         const issuedToWalletId = document.getElementById('voucherOwner').value;
         

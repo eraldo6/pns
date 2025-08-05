@@ -49,10 +49,6 @@
             <i class="fas fa-plus me-2"></i>
             Create Wallet
         </button>
-        <button class="btn btn-secondary ms-2" onclick="testModal()">
-            <i class="fas fa-vial me-2"></i>
-            Test Modal
-        </button>
     </div>
 </div>
 
@@ -127,7 +123,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="testWalletCreation()">Confirm Create</button>
+                <button type="button" class="btn btn-primary" onclick="confirmCreateWallet(event)">Confirm Create</button>
             </div>
         </div>
     </div>
@@ -229,17 +225,9 @@
         }
     }
 
-    function testWalletCreation() {
-        alert('Button clicked! Function is working.');
-        console.log('testWalletCreation called');
-        
-        // Now call the actual function
-        confirmCreateWallet();
-    }
-    
     function confirmCreateWallet(event) {
         console.log('confirmCreateWallet called with event:', event);
-        
+
         const button = event ? event.target : document.querySelector('#createWalletModal .btn-primary');
         const originalText = button.innerHTML;
         button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Creating...';
@@ -304,27 +292,5 @@
         }
     }
     
-    // Test modal function
-    function testModal() {
-        console.log('Testing modal...');
-        console.log('Bootstrap available:', typeof bootstrap !== 'undefined');
-        console.log('Modal element:', document.getElementById('createWalletModal'));
-        
-        // Simple alert test
-        alert('Modal test - if you see this, JavaScript is working!');
-
-        try {
-            const modalElement = document.getElementById('createWalletModal');
-            if (modalElement) {
-                const modal = new bootstrap.Modal(modalElement);
-                modal.show();
-                console.log('Modal shown successfully');
-            } else {
-                console.error('Modal element not found!');
-            }
-        } catch (error) {
-            console.error('Error showing modal:', error);
-        }
-    }
 </script>
-{% endblock %} 
+{% endblock %}

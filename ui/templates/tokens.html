@@ -103,55 +103,12 @@
                     <i class="fas fa-coins fa-3x text-muted mb-3"></i>
                     <h5 class="text-muted">No Tokens Found</h5>
                     <p class="text-muted">Issue your first token to get started.</p>
-                    <button class="btn btn-success" onclick="issueToken()">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#issueTokenModal">
                         <i class="fas fa-plus me-2"></i>
                         Issue Token
                     </button>
                 </div>
                 {% endif %}
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Issue Token Modal -->
-<div class="modal fade" id="issueTokenModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    <i class="fas fa-coins me-2"></i>
-                    Issue New Token
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form id="issueTokenForm">
-                    <div class="mb-3">
-                        <label for="tokenValue" class="form-label">Token Value (€)</label>
-                        <input type="number" class="form-control" id="tokenValue" value="100" min="1" step="0.01" required>
-                        <div class="form-text">Enter the value of the token in euros.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="tokenOwner" class="form-label">Owner Wallet ID</label>
-                        <select class="form-select" id="tokenOwner" required>
-                            <option value="">Select a wallet...</option>
-                            {% for wallet in wallets %}
-                            <option value="{{ wallet.wallet_id }}">
-                                {{ wallet.wallet_id }} (€{{ wallet.token_balance }})
-                            </option>
-                            {% endfor %}
-                        </select>
-                        <div class="form-text">Select the wallet that will own this token.</div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" onclick="confirmIssueToken()">
-                    <i class="fas fa-coins me-2"></i>
-                    Issue Token
-                </button>
             </div>
         </div>
     </div>
@@ -208,7 +165,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" onclick="testTokenCreation()">Issue Token</button>
+                <button type="button" class="btn btn-success" onclick="confirmIssueToken(event)">Issue Token</button>
             </div>
         </div>
     </div>
@@ -218,14 +175,6 @@
 
 {% block extra_js %}
 <script>
-    function testTokenCreation() {
-        alert('Token button clicked! Function is working.');
-        console.log('testTokenCreation called');
-        
-        // Now call the actual function
-        confirmIssueToken();
-    }
-    
     function confirmIssueToken(event) {
         const value = document.getElementById('tokenValue').value;
         const ownerWalletId = document.getElementById('tokenOwner').value;
