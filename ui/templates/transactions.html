@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Transactions - Privacy Network System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-exchange-alt me-2"></i>
+            Transaction Management
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-list me-2"></i>
+                    Recent Transactions
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if transactions %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Value</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for tx in transactions %}
+                            <tr>
+                                <td><code>{{ tx.transaction_id }}</code></td>
+                                <td><code>{{ tx.sender_wallet_id }}</code></td>
+                                <td><code>{{ tx.receiver_wallet_id }}</code></td>
+                                <td><span class="badge bg-success">€{{ tx.value }}</span></td>
+                                <td>
+                                    {% if tx.is_anonymous %}
+                                    <span class="badge bg-info">Anonymous</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">Regular</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if tx.aml_flagged %}
+                                    <span class="badge bg-warning">Flagged</span>
+                                    {% else %}
+                                    <span class="badge bg-success">Completed</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-exchange-alt fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">No Transactions Found</h5>
+                    <p class="text-muted">Execute your first transaction to get started.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

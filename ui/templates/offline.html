@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+
+{% block title %}Offline Transactions - Privacy Network System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-wifi-slash me-2 text-warning" style="font-size: 1.5em; display: inline-block;" onerror="this.style.display='none'; this.nextSibling.style.display='inline';">
+            </i>
+            <span style="display: none; color: #f59e0b; font-size: 1.5em;">📶</span>
+            Offline Transactions
+        </h1>
+        <p class="text-muted">Create and manage peer-to-peer offline transactions that work without immediate ledger access.</p>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0">
+                    <i class="fas fa-plus-circle me-2"></i>
+                    Create Offline Transaction
+                </h5>
+            </div>
+            <div class="card-body">
+                <form id="offlineTransactionForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="senderWallet" class="form-label">Sender Wallet</label>
+                                <select class="form-select" id="senderWallet" required>
+                                    <option value="">Select sender wallet...</option>
+                                    {% for wallet in wallets %}
+                                    <option value="{{ wallet.wallet_id }}">{{ wallet.wallet_id[:8] }}... (€{{ wallet.token_balance }})</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="receiverWallet" class="form-label">Receiver Wallet</label>
+                                <select class="form-select" id="receiverWallet" required>
+                                    <option value="">Select receiver wallet...</option>
+                                    {% for wallet in wallets %}
+                                    <option value="{{ wallet.wallet_id }}">{{ wallet.wallet_id[:8] }}... (€{{ wallet.token_balance }})</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="tokenId" class="form-label">Token ID</label>
+                                <select class="form-select" id="tokenId" required>
+                                    <option value="">Select token...</option>
+                                    {% for token in tokens %}
+                                    <option value="{{ token.token_id }}">€{{ token.value }} ({{ token.token_id[:8] }}...)</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="voucherId" class="form-label">Voucher ID (Optional)</label>
+                                <select class="form-select" id="voucherId">
+                                    <option value="">No voucher (anonymous)</option>
+                                    {% for voucher in vouchers %}
+                                    {% if not voucher.is_used %}
+                                    <option value="{{ voucher.voucher_id }}">€{{ voucher.value_limit }} ({{ voucher.voucher_id[:8] }}...)</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-paper-plane me-2"></i>
+                            Create Offline Transaction
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-list me-2"></i>
+                    Offline Transactions
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if offline_transactions %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Sender</th>
+                                <th>Receiver</th>
+                                <th>Value</th>
+                                <th>Voucher</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for transaction in offline_transactions %}
+                            <tr>
+                                <td><code>{{ transaction.transaction_id[:8] }}...</code></td>
+                                <td><code>{{ transaction.sender_wallet_id[:8] }}...</code></td>
+                                <td><code>{{ transaction.receiver_wallet_id[:8] }}...</code></td>
+                                <td>€{{ transaction.token_value }}</td>
+                                <td>
+                                    {% if transaction.voucher_id %}
+                                    <span class="badge bg-info">{{ transaction.voucher_id[:8] }}...</span>
+                                    {% else %}
+                                    <span class="text-muted">None</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if transaction.status == 'pending' %}
+                                    <span class="badge bg-warning">Pending</span>
+                                    {% elif transaction.status == 'signed' %}
+                                    <span class="badge bg-success">Signed</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">{{ transaction.status }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="signTransaction('{{ transaction.transaction_id }}')">
+                                        <i class="fas fa-signature"></i> Sign
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-success" onclick="syncTransaction('{{ transaction.transaction_id }}')">
+                                        <i class="fas fa-sync"></i> Sync
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-wifi-slash fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">No Offline Transactions</h5>
+                    <p class="text-muted">Create your first offline transaction using the form above.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('offlineTransactionForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = {
+        sender_wallet_id: document.getElementById('senderWallet').value,
+        receiver_wallet_id: document.getElementById('receiverWallet').value,
+        token_id: document.getElementById('tokenId').value,
+        voucher_id: document.getElementById('voucherId').value || null
+    };
+    
+    fetch('/api/offline/create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showToast('Offline transaction created successfully!', 'success');
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showToast('Error creating offline transaction: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        showToast('Error creating offline transaction: ' + error, 'error');
+    });
+});
+
+function signTransaction(transactionId) {
+    fetch('/api/offline/sign', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ transaction_id: transactionId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showToast('Transaction signed successfully!', 'success');
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showToast('Error signing transaction: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        showToast('Error signing transaction: ' + error, 'error');
+    });
+}
+
+function syncTransaction(transactionId) {
+    fetch('/api/offline/sync', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ transaction_id: transactionId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showToast('Transaction synced to ledger successfully!', 'success');
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showToast('Error syncing transaction: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        showToast('Error syncing transaction: ' + error, 'error');
+    });
+}
+</script>
+{% endblock %} 

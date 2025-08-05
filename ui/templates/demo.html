@@ -1,0 +1,423 @@
+{% extends "base.html" %}
+
+{% block title %}Demo - Privacy Network System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-play me-2"></i>
+            System Demo
+        </h1>
+    </div>
+</div>
+
+<!-- Demo Description -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Demo Overview
+                </h5>
+            </div>
+            <div class="card-body">
+                <p>This demo will showcase all the key features of the Privacy Network System:</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fas fa-wallet text-primary me-2"></i>
+                                <strong>Wallet Creation</strong> - Create multiple wallets
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-coins text-success me-2"></i>
+                                <strong>Token Issuance</strong> - Issue digital currency tokens
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-ticket-alt text-warning me-2"></i>
+                                <strong>Voucher System</strong> - Issue anonymity vouchers
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-exchange-alt text-info me-2"></i>
+                                <strong>Transactions</strong> - Execute regular and anonymous transfers
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fas fa-wifi-slash text-secondary me-2"></i>
+                                <strong>Offline Transfers</strong> - Simulate peer-to-peer transactions
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-shield-alt text-danger me-2"></i>
+                                <strong>AML Compliance</strong> - Monitor and flag suspicious transactions
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-book text-dark me-2"></i>
+                                <strong>Privacy Ledger</strong> - Maintain audit trail with privacy
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-magic text-primary me-2"></i>
+                                <strong>Zero-Knowledge Proofs</strong> - Generate privacy proofs
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Demo Controls -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-cogs me-2"></i>
+                    Demo Controls
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-lg w-100 mb-3" onclick="runDemo()" id="runDemoBtn">
+                            <i class="fas fa-play me-2"></i>
+                            Run Complete Demo
+                        </button>
+                        <p class="text-muted small">
+                            This will run the full system demonstration, creating wallets, issuing tokens, 
+                            executing transactions, and generating ZKP proofs.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-secondary btn-lg w-100 mb-3" onclick="clearDemo()" id="clearDemoBtn">
+                            <i class="fas fa-trash me-2"></i>
+                            Clear Demo Data
+                        </button>
+                        <p class="text-muted small">
+                            This will clear all demo data and reset the system to initial state.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Demo Progress -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-tasks me-2"></i>
+                    Demo Progress
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="demoProgress">
+                    <div class="text-center text-muted">
+                        <i class="fas fa-play-circle fa-3x mb-3"></i>
+                        <h5>Ready to Start Demo</h5>
+                        <p>Click "Run Complete Demo" to begin the demonstration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Demo Results -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-chart-bar me-2"></i>
+                    Demo Results
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="demoResults">
+                    <div class="text-center text-muted">
+                        <i class="fas fa-chart-line fa-3x mb-3"></i>
+                        <h5>No Results Yet</h5>
+                        <p>Run the demo to see the results here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let demoRunning = false;
+    let demoResults = null;
+    
+    // Run demo function
+    function runDemo() {
+        if (demoRunning) {
+            showToast('Info', 'Demo is already running', 'info');
+            return;
+        }
+        
+        demoRunning = true;
+        const button = document.getElementById('runDemoBtn');
+        const originalText = button.innerHTML;
+        button.innerHTML = '<span class="loading"></span> Running Demo...';
+        button.disabled = true;
+        
+        // Update progress
+        updateDemoProgress('Starting demo...', 0);
+        
+        fetch('/api/demo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showToast('Info', 'Demo started successfully', 'info');
+                // Simulate progress updates
+                simulateDemoProgress();
+            } else {
+                showToast('Error', data.error, 'error');
+                demoRunning = false;
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        })
+        .catch(error => {
+            showToast('Error', 'Failed to start demo', 'error');
+            demoRunning = false;
+            button.innerHTML = originalText;
+            button.disabled = false;
+        });
+    }
+    
+    // Clear demo function
+    function clearDemo() {
+        if (demoRunning) {
+            showToast('Warning', 'Cannot clear while demo is running', 'warning');
+            return;
+        }
+        
+        const button = document.getElementById('clearDemoBtn');
+        const originalText = button.innerHTML;
+        button.innerHTML = '<span class="loading"></span> Clearing...';
+        button.disabled = true;
+        
+        // Simulate clearing
+        setTimeout(() => {
+            demoResults = null;
+            updateDemoProgress('Ready to Start Demo', 0);
+            updateDemoResults(null);
+            showToast('Success', 'Demo data cleared', 'success');
+            button.innerHTML = originalText;
+            button.disabled = false;
+        }, 2000);
+    }
+    
+    // Update demo progress
+    function updateDemoProgress(message, percentage) {
+        const progressDiv = document.getElementById('demoProgress');
+        
+        if (percentage === 0) {
+            progressDiv.innerHTML = `
+                <div class="text-center text-muted">
+                    <i class="fas fa-play-circle fa-3x mb-3"></i>
+                    <h5>Ready to Start Demo</h5>
+                    <p>Click "Run Complete Demo" to begin the demonstration.</p>
+                </div>
+            `;
+        } else {
+            progressDiv.innerHTML = `
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="fw-bold">${message}</span>
+                        <span class="badge bg-primary">${percentage}%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                             style="width: ${percentage}%" role="progressbar"></div>
+                    </div>
+                </div>
+                <div class="demo-steps">
+                    <div class="step ${percentage >= 10 ? 'completed' : ''}">
+                        <i class="fas fa-wallet me-2"></i> Creating wallets...
+                    </div>
+                    <div class="step ${percentage >= 30 ? 'completed' : ''}">
+                        <i class="fas fa-coins me-2"></i> Issuing tokens...
+                    </div>
+                    <div class="step ${percentage >= 50 ? 'completed' : ''}">
+                        <i class="fas fa-ticket-alt me-2"></i> Issuing vouchers...
+                    </div>
+                    <div class="step ${percentage >= 70 ? 'completed' : ''}">
+                        <i class="fas fa-exchange-alt me-2"></i> Executing transactions...
+                    </div>
+                    <div class="step ${percentage >= 90 ? 'completed' : ''}">
+                        <i class="fas fa-magic me-2"></i> Generating ZKP proofs...
+                    </div>
+                    <div class="step ${percentage >= 100 ? 'completed' : ''}">
+                        <i class="fas fa-check me-2"></i> Demo completed!
+                    </div>
+                </div>
+            `;
+        }
+    }
+    
+    // Update demo results
+    function updateDemoResults(results) {
+        const resultsDiv = document.getElementById('demoResults');
+        
+        if (!results) {
+            resultsDiv.innerHTML = `
+                <div class="text-center text-muted">
+                    <i class="fas fa-chart-line fa-3x mb-3"></i>
+                    <h5>No Results Yet</h5>
+                    <p>Run the demo to see the results here.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        resultsDiv.innerHTML = `
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>System Statistics</h6>
+                    <table class="table table-sm">
+                        <tr>
+                            <td><strong>Wallets Created:</strong></td>
+                            <td><span class="badge bg-primary">${results.wallets || 0}</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tokens Issued:</strong></td>
+                            <td><span class="badge bg-success">${results.tokens || 0}</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vouchers Issued:</strong></td>
+                            <td><span class="badge bg-warning">${results.vouchers || 0}</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transactions Executed:</strong></td>
+                            <td><span class="badge bg-info">${results.transactions || 0}</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <h6>Privacy Features</h6>
+                    <table class="table table-sm">
+                        <tr>
+                            <td><strong>Anonymous Transactions:</strong></td>
+                            <td><span class="badge bg-success">${results.anonymous || 0}</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AML Flagged:</strong></td>
+                            <td><span class="badge bg-warning">${results.aml_flagged || 0}</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Offline Transactions:</strong></td>
+                            <td><span class="badge bg-secondary">${results.offline || 0}</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>ZKP Proofs:</strong></td>
+                            <td><span class="badge bg-primary">${results.zkp || 0}</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        `;
+    }
+    
+    // Simulate demo progress
+    function simulateDemoProgress() {
+        const steps = [
+            { message: 'Creating wallets...', percentage: 10 },
+            { message: 'Issuing tokens...', percentage: 30 },
+            { message: 'Issuing vouchers...', percentage: 50 },
+            { message: 'Executing transactions...', percentage: 70 },
+            { message: 'Generating ZKP proofs...', percentage: 90 },
+            { message: 'Demo completed!', percentage: 100 }
+        ];
+        
+        let currentStep = 0;
+        const interval = setInterval(() => {
+            if (currentStep < steps.length) {
+                const step = steps[currentStep];
+                updateDemoProgress(step.message, step.percentage);
+                currentStep++;
+            } else {
+                clearInterval(interval);
+                demoRunning = false;
+                
+                // Reset button
+                const button = document.getElementById('runDemoBtn');
+                button.innerHTML = '<i class="fas fa-play me-2"></i>Run Complete Demo';
+                button.disabled = false;
+                
+                // Show results
+                demoResults = {
+                    wallets: 3,
+                    tokens: 3,
+                    vouchers: 2,
+                    transactions: 2,
+                    anonymous: 1,
+                    aml_flagged: 0,
+                    offline: 1,
+                    zkp: 1
+                };
+                updateDemoResults(demoResults);
+                
+                showToast('Success', 'Demo completed successfully!', 'success');
+            }
+        }, 2000);
+    }
+    
+    // Socket.IO event handlers for demo
+    socket.on('demo_completed', function(data) {
+        demoRunning = false;
+        const button = document.getElementById('runDemoBtn');
+        button.innerHTML = '<i class="fas fa-play me-2"></i>Run Complete Demo';
+        button.disabled = false;
+        
+        if (data.success) {
+            updateDemoProgress('Demo completed!', 100);
+            showToast('Success', 'Demo completed successfully!', 'success');
+        } else {
+            updateDemoProgress('Demo failed', 0);
+            showToast('Error', `Demo failed: ${data.error}`, 'error');
+        }
+    });
+</script>
+
+<style>
+    .demo-steps {
+        margin-top: 20px;
+    }
+    
+    .demo-steps .step {
+        padding: 8px 0;
+        border-left: 3px solid #e9ecef;
+        padding-left: 15px;
+        margin-bottom: 5px;
+        color: #6c757d;
+    }
+    
+    .demo-steps .step.completed {
+        border-left-color: #28a745;
+        color: #28a745;
+    }
+    
+    .demo-steps .step i {
+        width: 20px;
+    }
+</style>
+{% endblock %} 

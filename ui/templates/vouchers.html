@@ -1,0 +1,302 @@
+{% extends "base.html" %}
+
+{% block title %}Vouchers - Privacy Network System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>
+                <i class="fas fa-ticket-alt me-2"></i>
+                Voucher Management
+            </h1>
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#issueVoucherModal">
+                <i class="fas fa-plus me-2"></i>
+                Issue New Voucher
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Voucher Statistics -->
+<div class="row mb-4">
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="fas fa-ticket-alt fa-2x text-warning mb-2"></i>
+                <h4 class="text-warning">{{ vouchers|length }}</h4>
+                <p class="text-muted mb-0">Total Vouchers</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="fas fa-euro-sign fa-2x text-primary mb-2"></i>
+                <h4 class="text-primary">€{{ vouchers|sum(attribute='value_limit') }}</h4>
+                <p class="text-muted mb-0">Total Value Limit</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="fas fa-check-circle fa-2x text-success mb-2"></i>
+                <h4 class="text-success">{{ vouchers|selectattr('is_used', 'equalto', False)|list|length }}</h4>
+                <p class="text-muted mb-0">Available Vouchers</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vouchers Table -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-list me-2"></i>
+                    All Vouchers
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if vouchers %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Voucher ID</th>
+                                <th>Value Limit</th>
+                                <th>Issued To</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for voucher in vouchers %}
+                            <tr>
+                                <td>
+                                    <code class="text-primary">{{ voucher.voucher_id }}</code>
+                                </td>
+                                <td>
+                                    <span class="badge bg-warning">€{{ voucher.value_limit }}</span>
+                                </td>
+                                <td>
+                                    <code class="text-muted">{{ voucher.issued_to_wallet_id }}</code>
+                                </td>
+                                <td>
+                                    {% if voucher.is_used %}
+                                    <span class="badge bg-secondary">Used</span>
+                                    {% else %}
+                                    <span class="badge bg-success">Available</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-sm btn-outline-primary" onclick="viewVoucherDetails('{{ voucher.voucher_id }}')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info" onclick="copyVoucherId('{{ voucher.voucher_id }}')">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-ticket-alt fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">No Vouchers Found</h5>
+                    <p class="text-muted">Issue your first anonymity voucher to get started.</p>
+                    <button class="btn btn-warning" onclick="issueVoucher()">
+                        <i class="fas fa-plus me-2"></i>
+                        Issue Voucher
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Issue Voucher Modal -->
+<div class="modal fade" id="issueVoucherModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-ticket-alt me-2"></i>
+                    Issue Anonymity Voucher
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="issueVoucherForm">
+                    <div class="mb-3">
+                        <label for="voucherLimit" class="form-label">Value Limit (€)</label>
+                        <input type="number" class="form-control" id="voucherLimit" value="50" min="1" step="0.01" required>
+                        <div class="form-text">Enter the maximum value this voucher can be used for.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="voucherOwner" class="form-label">Issued To Wallet ID</label>
+                        <select class="form-select" id="voucherOwner" required>
+                            <option value="">Select a wallet...</option>
+                            {% for wallet in wallets %}
+                            <option value="{{ wallet.wallet_id }}">
+                                {{ wallet.wallet_id }} (€{{ wallet.token_balance }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                        <div class="form-text">Select the wallet that will receive this voucher.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-warning" onclick="testVoucherCreation()">
+                    <i class="fas fa-ticket-alt me-2"></i>
+                    Issue Voucher
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Voucher Details Modal -->
+<div class="modal fade" id="voucherDetailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-ticket-alt me-2"></i>
+                    Voucher Details
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="voucherDetailsContent">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Issue voucher function
+    function issueVoucher() {
+        const modal = new bootstrap.Modal(document.getElementById('issueVoucherModal'));
+        modal.show();
+    }
+    
+    function testVoucherCreation() {
+        alert('Voucher button clicked! Function is working.');
+        console.log('testVoucherCreation called');
+        
+        // Now call the actual function
+        confirmIssueVoucher();
+    }
+    
+    function confirmIssueVoucher() {
+        const valueLimit = document.getElementById('voucherLimit').value;
+        const issuedToWalletId = document.getElementById('voucherOwner').value;
+        
+        if (!valueLimit || !issuedToWalletId) {
+            showToast('Error', 'Please fill in all fields', 'error');
+            return;
+        }
+        
+        const button = event.target;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<span class="loading"></span> Issuing...';
+        button.disabled = true;
+        
+        fetch('/api/vouchers', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                value_limit: parseFloat(valueLimit),
+                issued_to_wallet_id: issuedToWalletId
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showToast('Success', 'Voucher issued successfully!', 'success');
+                setTimeout(() => location.reload(), 1000);
+            } else {
+                showToast('Error', data.error, 'error');
+            }
+        })
+        .catch(error => {
+            showToast('Error', 'Failed to issue voucher', 'error');
+        })
+        .finally(() => {
+            button.innerHTML = originalText;
+            button.disabled = false;
+            bootstrap.Modal.getInstance(document.getElementById('issueVoucherModal')).hide();
+        });
+    }
+    
+    // View voucher details
+    function viewVoucherDetails(voucherId) {
+        // In a real app, this would fetch detailed voucher info
+        const content = `
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Voucher Information</h6>
+                    <table class="table table-sm">
+                        <tr>
+                            <td><strong>Voucher ID:</strong></td>
+                            <td><code>${voucherId}</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Value Limit:</strong></td>
+                            <td><span class="badge bg-warning">€50</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Issued To:</strong></td>
+                            <td><code>wallet_abc123</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Status:</strong></td>
+                            <td><span class="badge bg-success">Available</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <h6>Usage Information</h6>
+                    <div class="list-group list-group-flush">
+                        <div class="list-group-item">
+                            <small class="text-muted">This voucher can be used for anonymous transactions up to €50.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.getElementById('voucherDetailsContent').innerHTML = content;
+        const modal = new bootstrap.Modal(document.getElementById('voucherDetailsModal'));
+        modal.show();
+    }
+    
+    // Copy voucher ID to clipboard
+    function copyVoucherId(voucherId) {
+        navigator.clipboard.writeText(voucherId).then(() => {
+            showToast('Success', 'Voucher ID copied to clipboard', 'success');
+        }).catch(() => {
+            showToast('Error', 'Failed to copy voucher ID', 'error');
+        });
+    }
+</script>
+{% endblock %} 

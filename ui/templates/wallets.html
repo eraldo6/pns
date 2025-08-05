@@ -1,0 +1,330 @@
+{% extends "base.html" %}
+
+{% block title %}Wallets - Privacy Network System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-wallet me-2 text-primary"></i>
+            Wallet Management
+        </h1>
+        <p class="text-muted">Create, view, and manage your digital wallets within the Privacy Network System.</p>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-center bg-primary text-white shadow-sm">
+            <div class="card-body">
+                <i class="fas fa-wallet fa-3x mb-3"></i>
+                <h5 class="card-title">Total Wallets</h5>
+                <h4 class="text-white">{{ wallets|length }}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center bg-success text-white shadow-sm">
+            <div class="card-body">
+                <i class="fas fa-coins fa-3x mb-3"></i>
+                <h5 class="card-title">Total Tokens</h5>
+                <h4 class="text-white">{{ wallets|map(attribute='token_balance')|map('length')|sum }} tokens</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center bg-warning text-dark shadow-sm">
+            <div class="card-body">
+                <i class="fas fa-ticket-alt fa-3x mb-3"></i>
+                <h5 class="card-title">Total Vouchers</h5>
+                <h4 class="text-dark">{{ wallets|map(attribute='voucher_balance')|sum }} vouchers</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-end">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createWalletModal">
+            <i class="fas fa-plus me-2"></i>
+            Create Wallet
+        </button>
+        <button class="btn btn-secondary ms-2" onclick="testModal()">
+            <i class="fas fa-vial me-2"></i>
+            Test Modal
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">
+                    <i class="fas fa-list me-2"></i>
+                    All Wallets
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Wallet ID</th>
+                                <th>Public Key</th>
+                                <th>Token Balance</th>
+                                <th>Voucher Balance</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for wallet in wallets %}
+                            <tr>
+                                <td><code>{{ wallet.wallet_id }}</code></td>
+                                <td><code>{{ wallet.public_key[:10] }}...</code></td>
+                                <td>{{ wallet.token_balance|length }} tokens</td>
+                                <td>{{ wallet.voucher_balance }} vouchers</td>
+                                <td>
+                                    <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#viewWalletModal"
+                                            data-wallet-id="{{ wallet.wallet_id }}"
+                                            data-public-key="{{ wallet.public_key }}"
+                                            data-private-key="{{ wallet.private_key }}"
+                                            data-token-balance="{{ wallet.token_balance|length }}"
+                                            data-voucher-balance="{{ wallet.voucher_balance }}">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-secondary" onclick="copyToClipboard('{{ wallet.wallet_id }}')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center text-muted">No wallets created yet.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Wallet Modal -->
+<div class="modal fade" id="createWalletModal" tabindex="-1" aria-labelledby="createWalletModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="createWalletModalLabel">Create New Wallet</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Click "Confirm Create" to generate a new wallet with unique public and private keys.</p>
+                <div class="alert alert-info" role="alert">
+                    <strong>Note:</strong> For security, private keys are not stored and will only be shown once. Please copy it immediately.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="testWalletCreation()">Confirm Create</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Wallet Modal -->
+<div class="modal fade" id="viewWalletModal" tabindex="-1" aria-labelledby="viewWalletModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title" id="viewWalletModalLabel">Wallet Details</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="fullWalletId" class="form-label"><strong>Wallet ID:</strong></label>
+                    <div class="input-group">
+                        <input type="text" id="fullWalletId" class="form-control" readonly>
+                        <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard('fullWalletId')"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="fullPublicKey" class="form-label"><strong>Public Key:</strong></label>
+                    <div class="input-group">
+                        <input type="text" id="fullPublicKey" class="form-control" readonly>
+                        <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard('fullPublicKey')"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="fullPrivateKey" class="form-label"><strong>Private Key:</strong></label>
+                    <div class="input-group">
+                        <input type="password" id="fullPrivateKey" class="form-control" readonly>
+                        <button class="btn btn-outline-secondary" type="button" id="togglePassword" onclick="togglePasswordVisibility()">
+                            <i class="fas fa-eye" id="toggleIcon"></i>
+                        </button>
+                        <button class="btn btn-outline-secondary" type="button" onclick="copyToClipboard('fullPrivateKey')"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="detailTokenBalance" class="form-label"><strong>Token Balance:</strong></label>
+                        <input type="text" id="detailTokenBalance" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="detailVoucherBalance" class="form-label"><strong>Voucher Balance:</strong></label>
+                        <input type="text" id="detailVoucherBalance" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const viewWalletModal = document.getElementById('viewWalletModal');
+        viewWalletModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const walletId = button.getAttribute('data-wallet-id');
+            const publicKey = button.getAttribute('data-public-key');
+            const privateKey = button.getAttribute('data-private-key');
+            const tokenBalance = button.getAttribute('data-token-balance');
+            const voucherBalance = button.getAttribute('data-voucher-balance');
+
+            document.getElementById('fullWalletId').value = walletId;
+            document.getElementById('fullPublicKey').value = publicKey;
+            document.getElementById('fullPrivateKey').value = privateKey;
+            document.getElementById('detailTokenBalance').value = '€' + tokenBalance;
+            document.getElementById('detailVoucherBalance').value = '€' + voucherBalance;
+
+            // Reset password visibility
+            document.getElementById('fullPrivateKey').type = 'password';
+            document.getElementById('toggleIcon').className = 'fas fa-eye';
+        });
+    });
+
+    function copyToClipboard(elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.select();
+            element.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand('copy');
+            showToast('Copied!', 'Content copied to clipboard.', 'info');
+        } else {
+            // If elementId is the actual text, copy it directly
+            const tempInput = document.createElement('textarea');
+            tempInput.value = elementId; // elementId is the text to copy
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Copied!', 'Content copied to clipboard.', 'info');
+        }
+    }
+
+    function testWalletCreation() {
+        alert('Button clicked! Function is working.');
+        console.log('testWalletCreation called');
+        
+        // Now call the actual function
+        confirmCreateWallet();
+    }
+    
+    function confirmCreateWallet(event) {
+        console.log('confirmCreateWallet called with event:', event);
+        
+        const button = event ? event.target : document.querySelector('#createWalletModal .btn-primary');
+        const originalText = button.innerHTML;
+        button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Creating...';
+        button.disabled = true;
+        
+        console.log('Attempting to create wallet...');
+        console.log('Button element:', button);
+
+        fetch('/api/wallets', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        })
+        .then(response => {
+            console.log('Response received:', response);
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Data received:', data);
+            if (data.success) {
+                showToast('Success', 'Wallet created successfully!', 'success');
+                // Refresh page to update the table
+                setTimeout(() => location.reload(), 1000);
+            } else {
+                showToast('Error', data.error || 'Unknown error creating wallet', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            showToast('Error', 'Failed to create wallet: ' + error.message, 'error');
+        })
+        .finally(() => {
+            button.innerHTML = originalText;
+            button.disabled = false;
+            // Hide the modal after operation
+            const modalElement = document.getElementById('createWalletModal');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+                modal.hide();
+            }
+        });
+    }
+
+    // Toggle password visibility
+    function togglePasswordVisibility() {
+        const input = document.getElementById('fullPrivateKey');
+        const icon = document.getElementById('toggleIcon');
+        
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.className = 'fas fa-eye-slash';
+        } else {
+            input.type = 'password';
+            icon.className = 'fas fa-eye';
+        }
+    }
+    
+    // Test modal function
+    function testModal() {
+        console.log('Testing modal...');
+        console.log('Bootstrap available:', typeof bootstrap !== 'undefined');
+        console.log('Modal element:', document.getElementById('createWalletModal'));
+        
+        // Simple alert test
+        alert('Modal test - if you see this, JavaScript is working!');
+
+        try {
+            const modalElement = document.getElementById('createWalletModal');
+            if (modalElement) {
+                const modal = new bootstrap.Modal(modalElement);
+                modal.show();
+                console.log('Modal shown successfully');
+            } else {
+                console.error('Modal element not found!');
+            }
+        } catch (error) {
+            console.error('Error showing modal:', error);
+        }
+    }
+</script>
+{% endblock %} 
