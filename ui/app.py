@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Privacy Network System - Web UI
+Euromask - Web UI
 A modern web interface for the PNS digital currency system
 """
 
@@ -465,11 +465,11 @@ if __name__ == '__main__':
     # Initialize PNS system
     initialize_pns()
     
-    print("🔐 Privacy Network System - Web UI")
+    print("Euromask - Web UI")
     print("==================================")
-    print("🌐 Starting web server...")
-    print("📱 Open your browser to: http://localhost:5000")
-    print("🚀 Press Ctrl+C to stop the server")
+    print("Starting web server...")
+    print("Open your browser to: http://localhost:5000")
+    print("Press Ctrl+C to stop the server")
     print()
     
     # Run the Flask app

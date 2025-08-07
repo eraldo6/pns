@@ -24,7 +24,7 @@ class PrivacyNetworkSystem:
     
     def __init__(self):
         """Initialize all system components"""
-        print("🔐 Initializing Privacy Network System...")
+        print("Initializing Euromask...")
         
         # Initialize all managers
         self.wallet_manager = WalletManager()
@@ -39,7 +39,7 @@ class PrivacyNetworkSystem:
         # Set up cross-references between managers
         self._setup_manager_references()
         
-        print("✅ System initialized successfully!")
+        print("System initialized successfully!")
     
     def _setup_manager_references(self):
         """Set up cross-references between managers"""
@@ -75,58 +75,58 @@ class PrivacyNetworkSystem:
     
     def run_demo(self):
         """Run a comprehensive demonstration of the system"""
-        print("\n🎭 Privacy Network System - Comprehensive Demo")
+        print("\nEuromask - Comprehensive Demo")
         print("=" * 50)
         
         try:
             # 1. Create wallets
-            print("1️⃣ Creating wallets...")
+            print("1. Creating wallets...")
             wallet1 = self.wallet_manager.create_wallet()
             wallet2 = self.wallet_manager.create_wallet()
             wallet3 = self.wallet_manager.create_wallet()
-            print(f"   ✅ Created 3 wallets")
+            print(f"   Created 3 wallets")
             
             # 2. Issue tokens
-            print("2️⃣ Issuing tokens...")
+            print("2. Issuing tokens...")
             token1 = self.token_manager.issue_token(50, wallet1.wallet_id)
             token2 = self.token_manager.issue_token(100, wallet2.wallet_id)
             token3 = self.token_manager.issue_token(25, wallet3.wallet_id)
-            print(f"   ✅ Issued tokens: €{token1.value}, €{token2.value}, €{token3.value}")
+            print(f"   Issued tokens: €{token1.value}, €{token2.value}, €{token3.value}")
             
             # 3. Issue vouchers
-            print("3️⃣ Issuing anonymity vouchers...")
+            print("3. Issuing anonymity vouchers...")
             voucher1 = self.voucher_manager.issue_voucher(wallet1.wallet_id, 50)
             voucher2 = self.voucher_manager.issue_voucher(wallet2.wallet_id, 100)
-            print(f"   ✅ Issued vouchers with limits: €{voucher1.value_limit}, €{voucher2.value_limit}")
+            print(f"   Issued vouchers with limits: €{voucher1.value_limit}, €{voucher2.value_limit}")
             
             # 4. Execute regular transfer
-            print("4️⃣ Executing regular transfer...")
+            print("4. Executing regular transfer...")
             tx1 = self.transaction_engine.execute_transfer(wallet1.wallet_id, wallet2.wallet_id, token1.token_id)
-            print(f"   ✅ Regular transfer completed ({'AML flagged' if tx1.aml_flagged else 'no flags'})")
+            print(f"   Regular transfer completed ({'AML flagged' if tx1.aml_flagged else 'no flags'})")
             
             # 5. Execute anonymous transfer
-            print("5️⃣ Executing anonymous transfer...")
+            print("5. Executing anonymous transfer...")
             tx2 = self.transaction_engine.execute_transfer(wallet2.wallet_id, wallet3.wallet_id, token2.token_id, voucher2.voucher_id)
-            print(f"   ✅ Anonymous transfer completed")
+            print(f"   Anonymous transfer completed")
             
             # 6. Create offline transfer
-            print("6️⃣ Creating offline transfer...")
+            print("6. Creating offline transfer...")
             offline_tx = self.offline_manager.create_offline_transaction(wallet3.wallet_id, wallet1.wallet_id, token3.token_id)
-            print(f"   ✅ Offline transfer created")
+            print(f"   Offline transfer created")
             
             # 7. Generate ZKP proof
-            print("7️⃣ Generating zero-knowledge proof...")
+            print("7. Generating zero-knowledge proof...")
             proof = self.zkp_manager.generate_range_proof(wallet1.wallet_id, 0, 200)
-            print(f"   ✅ Range proof generated")
+            print(f"   Range proof generated")
             
             # 8. Show system status
-            print("8️⃣ System Status:")
+            print("8. System Status:")
             self._show_system_status()
             
-            print("✅ Demo completed successfully!")
+            print("Demo completed successfully!")
             
         except Exception as e:
-            print(f"❌ Demo failed: {e}")
+            print(f"Demo failed: {e}")
     
     def _show_system_status(self):
         """Show comprehensive system status"""
@@ -182,7 +182,7 @@ class PrivacyNetworkSystem:
     
     def export_system_data(self) -> Dict[str, str]:
         """Export all system data to JSON files"""
-        print("📊 Exporting system data...")
+        print("Exporting system data...")
         
         exported_files = {}
         
@@ -207,14 +207,14 @@ class PrivacyNetworkSystem:
             zkp_filename = self.zkp_manager.export_zkp_proofs()
             exported_files['ZKP Proofs'] = zkp_filename
             
-            print("✅ System data exported:")
+            print("System data exported:")
             for file_type, filename in exported_files.items():
                 print(f"   {file_type}: {filename}")
             
             return exported_files
             
         except Exception as e:
-            print(f"❌ Export failed: {e}")
+            print(f"Export failed: {e}")
             return {}
     
     def run_cli(self):
@@ -226,7 +226,7 @@ class PrivacyNetworkSystem:
 def main():
     """Main entry point"""
     parser = argparse.ArgumentParser(
-        description="Privacy Network System - Digital Currency with Privacy Features",
+        description="Euromask - Digital Currency with Privacy Features",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -251,7 +251,7 @@ Examples:
         system.run_demo()
     
     if args.status:
-        print("\n📊 System Status:")
+        print("\nSystem Status:")
         print("=" * 30)
         status = system.get_system_status()
         print(f"   Wallets: {status['wallets']}")

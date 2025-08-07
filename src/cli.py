@@ -17,7 +17,7 @@ class PrivacyNetworkCLI:
     
     def run(self):
         """Run the interactive CLI"""
-        print("🔐 Privacy Network System - Interactive CLI")
+        print("Euromask - Interactive CLI")
         print("=" * 50)
         print("Type 'help' for available commands")
         print("Type 'exit' to quit")
@@ -25,20 +25,20 @@ class PrivacyNetworkCLI:
         
         while self.running:
             try:
-                user_input = input("\n🔐 PNS> ").strip()
+                user_input = input("\nPNS> ").strip()
                 if not user_input:
                     continue
                 
                 self.process_command(user_input)
                 
             except EOFError:
-                print("\n👋 Goodbye!")
+                print("\nGoodbye!")
                 break
             except KeyboardInterrupt:
-                print("\n👋 Goodbye!")
+                print("\nGoodbye!")
                 break
             except Exception as e:
-                print(f"❌ Error: {e}")
+                print(f"Error: {e}")
     
     def process_command(self, command: str):
         """Process user command"""
@@ -53,7 +53,7 @@ class PrivacyNetworkCLI:
             self.show_help()
         elif cmd == 'exit' or cmd == 'quit':
             self.running = False
-            print("👋 Goodbye!")
+            print("Goodbye!")
         elif cmd == 'status':
             self.show_status()
         elif cmd == 'wallet':
@@ -77,69 +77,69 @@ class PrivacyNetworkCLI:
         elif cmd == 'demo':
             self.run_demo()
         else:
-            print(f"❌ Unknown command: {cmd}")
+            print(f"Unknown command: {cmd}")
             print("Type 'help' for available commands")
     
     def show_help(self):
         """Show help information"""
         help_text = """
-🔐 Privacy Network System - Available Commands
+Euromask - Available Commands
 ==============================================
 
-📊 System Commands:
+System Commands:
   status                    - Show system status
   help                      - Show this help
   exit/quit                 - Exit the CLI
   demo                      - Run comprehensive demo
 
-👛 Wallet Commands:
+Wallet Commands:
   wallet create             - Create a new wallet
   wallet list               - List all wallets
   wallet info <id>          - Show wallet details
   wallet balance <id>       - Show wallet balance
 
-🪙 Token Commands:
+Token Commands:
   token issue <wallet_id> <value>  - Issue token to wallet
   token list                        - List all tokens
   token info <id>                   - Show token details
   token balance <wallet_id>         - Show wallet's tokens
 
-🎫 Voucher Commands:
+Voucher Commands:
   voucher issue <wallet_id> <limit> - Issue voucher to wallet
   voucher list                       - List all vouchers
   voucher info <id>                  - Show voucher details
   voucher available <wallet_id>      - Show available vouchers
 
-💸 Transfer Commands:
+Transfer Commands:
   transfer <sender> <receiver> <token_id> [voucher_id]  - Execute transfer
   transfer list                       - List all transactions
   transfer info <id>                  - Show transaction details
   transfer anonymous <sender> <receiver> <token_id> <voucher_id>  - Anonymous transfer
 
-📱 Offline Commands:
+Offline Commands:
   offline create <sender> <receiver> <token_id> [voucher_id]  - Create offline transaction
   offline sign <offline_id> <wallet_id> <signature>           - Sign offline transaction
   offline sync <offline_id>                                   - Sync with ledger
   offline list                                                 - List offline transactions
 
-🔍 Compliance Commands:
+Compliance Commands:
   compliance list             - List AML entries
   compliance stats            - Show compliance statistics
   compliance export           - Export AML report
 
-📋 Ledger Commands:
+Ledger Commands:
   ledger list                 - List ledger entries
   ledger stats                - Show ledger statistics
   ledger query <params>       - Query ledger
   ledger export               - Export ledger data
 
-🔐 ZKP Commands:
+ZKP Commands:
   zkp range <wallet_id> <min> <max>     - Generate range proof
   zkp verify <proof_id>                 - Verify proof
   zkp list                               - List all proofs
   zkp stats                              - Show ZKP statistics
 
-📤 Export Commands:
+Export Commands:
   export all                - Export all system data
   export aml                - Export AML report
   export ledger             - Export ledger data
@@ -158,52 +158,52 @@ Examples:
     
     def show_status(self):
         """Show system status"""
-        print("\n📊 System Status:")
+        print("\nSystem Status:")
         print("=" * 30)
         
         # Wallet status
         wallets = self.system.wallet_manager.list_wallets()
-        print(f"👛 Wallets: {len(wallets)}")
+        print(f"Wallets: {len(wallets)}")
         
         # Token status
         tokens = self.system.token_manager.list_all_tokens()
         total_value = sum(token.value for token in tokens)
-        print(f"🪙 Tokens: {len(tokens)} (€{total_value})")
+        print(f"Tokens: {len(tokens)} (€{total_value})")
         
         # Voucher status
         vouchers = self.system.voucher_manager.list_all_vouchers()
         available_vouchers = self.system.voucher_manager.get_unused_vouchers()
-        print(f"🎫 Vouchers: {len(vouchers)} ({len(available_vouchers)} available)")
+        print(f"Vouchers: {len(vouchers)} ({len(available_vouchers)} available)")
         
         # Transaction status
         transactions = self.system.transaction_engine.list_all_transactions()
         anonymous_transactions = self.system.transaction_engine.get_anonymous_transactions()
-        print(f"💸 Transactions: {len(transactions)} ({len(anonymous_transactions)} anonymous)")
+        print(f"Transactions: {len(transactions)} ({len(anonymous_transactions)} anonymous)")
         
         # AML status
         aml_entries = self.system.compliance_manager.get_aml_entries()
-        print(f"🚨 AML Flagged: {len(aml_entries)}")
+        print(f"AML Flagged: {len(aml_entries)}")
         
         # Offline status
         offline_txs = self.system.offline_manager.list_all_offline_transactions()
         pending_offline = self.system.offline_manager.get_pending_offline_transactions()
-        print(f"📱 Offline: {len(offline_txs)} ({len(pending_offline)} pending)")
+        print(f"Offline: {len(offline_txs)} ({len(pending_offline)} pending)")
         
         # ZKP status
         zkp_proofs = self.system.zkp_manager.list_all_proofs()
-        print(f"🔐 ZKP Proofs: {len(zkp_proofs)}")
+        print(f"ZKP Proofs: {len(zkp_proofs)}")
     
     def handle_wallet_commands(self, args: List[str]):
         """Handle wallet-related commands"""
         if not args:
-            print("❌ Usage: wallet <command> [args]")
+            print("Usage: wallet <command> [args]")
             return
         
         cmd = args[0].lower()
         
         if cmd == 'create':
             wallet = self.system.wallet_manager.create_wallet()
-            print(f"✅ Created wallet: {wallet.wallet_id}")
+            print(f"Created wallet: {wallet.wallet_id}")
             print(f"   Public Key: {wallet.public_key[:16]}...")
         
         elif cmd == 'list':
@@ -212,7 +212,7 @@ Examples:
                 print("📭 No wallets found")
                 return
             
-            print(f"\n👛 Wallets ({len(wallets)}):")
+            print(f"\nWallets ({len(wallets)}):")
             for wallet in wallets:
                 tokens = self.system.token_manager.get_tokens_by_owner(wallet.wallet_id)
                 total_value = sum(token.value for token in tokens)
@@ -220,19 +220,19 @@ Examples:
         
         elif cmd == 'info':
             if len(args) < 2:
-                print("❌ Usage: wallet info <wallet_id>")
+                print("Usage: wallet info <wallet_id>")
                 return
             
             wallet_id = args[1]
             wallet = self.system.wallet_manager.get_wallet(wallet_id)
             if not wallet:
-                print(f"❌ Wallet {wallet_id} not found")
+                print(f"Wallet {wallet_id} not found")
                 return
             
             tokens = self.system.token_manager.get_tokens_by_owner(wallet_id)
             total_value = sum(token.value for token in tokens)
             
-            print(f"\n👛 Wallet Details:")
+            print(f"\nWallet Details:")
             print(f"  ID: {wallet.wallet_id}")
             print(f"  Public Key: {wallet.public_key}")
             print(f"  Token Balance: €{total_value} ({len(tokens)} tokens)")
@@ -245,69 +245,69 @@ Examples:
         
         elif cmd == 'balance':
             if len(args) < 2:
-                print("❌ Usage: wallet balance <wallet_id>")
+                print("Usage: wallet balance <wallet_id>")
                 return
             
             wallet_id = args[1]
             tokens = self.system.token_manager.get_tokens_by_owner(wallet_id)
             total_value = sum(token.value for token in tokens)
             
-            print(f"\n💰 Wallet Balance: €{total_value}")
+            print(f"\nWallet Balance: €{total_value}")
             print(f"   Tokens: {len(tokens)}")
             for token in tokens:
                 print(f"     {token.token_id[:8]}... - €{token.value}")
         
         else:
-            print(f"❌ Unknown wallet command: {cmd}")
+            print(f"Unknown wallet command: {cmd}")
     
     def handle_token_commands(self, args: List[str]):
         """Handle token-related commands"""
         if not args:
-            print("❌ Usage: token <command> [args]")
+            print("Usage: token <command> [args]")
             return
         
         cmd = args[0].lower()
         
         if cmd == 'issue':
             if len(args) < 3:
-                print("❌ Usage: token issue <wallet_id> <value>")
+                print("Usage: token issue <wallet_id> <value>")
                 return
             
             wallet_id = args[1]
             try:
                 value = int(args[2])
             except ValueError:
-                print("❌ Value must be a number")
+                print("Value must be a number")
                 return
             
             try:
                 token = self.system.token_manager.issue_token(value, wallet_id)
-                print(f"✅ Issued token: {token.token_id[:8]}... - €{token.value}")
+                print(f"Issued token: {token.token_id[:8]}... - €{token.value}")
             except Exception as e:
-                print(f"❌ Error: {e}")
+                print(f"Error: {e}")
         
         elif cmd == 'list':
             tokens = self.system.token_manager.list_all_tokens()
             if not tokens:
-                print("📭 No tokens found")
+                print("No tokens found")
                 return
             
-            print(f"\n🪙 Tokens ({len(tokens)}):")
+            print(f"\nTokens ({len(tokens)}):")
             for token in tokens:
                 print(f"  {token.token_id[:8]}... - €{token.value} (Owner: {token.owner_wallet_id[:8]}...)")
         
         elif cmd == 'info':
             if len(args) < 2:
-                print("❌ Usage: token info <token_id>")
+                print("Usage: token info <token_id>")
                 return
             
             token_id = args[1]
             token = self.system.token_manager.get_token(token_id)
             if not token:
-                print(f"❌ Token {token_id} not found")
+                print(f"Token {token_id} not found")
                 return
             
-            print(f"\n🪙 Token Details:")
+            print(f"\nToken Details:")
             print(f"  ID: {token.token_id}")
             print(f"  Value: €{token.value}")
             print(f"  Owner: {token.owner_wallet_id}")
@@ -315,19 +315,19 @@ Examples:
         
         elif cmd == 'balance':
             if len(args) < 2:
-                print("❌ Usage: token balance <wallet_id>")
+                print("Usage: token balance <wallet_id>")
                 return
             
             wallet_id = args[1]
             tokens = self.system.token_manager.get_tokens_by_owner(wallet_id)
             total_value = sum(token.value for token in tokens)
             
-            print(f"\n💰 Token Balance: €{total_value}")
+            print(f"\nToken Balance: €{total_value}")
             for token in tokens:
                 print(f"  {token.token_id[:8]}... - €{token.value}")
         
         else:
-            print(f"❌ Unknown token command: {cmd}")
+            print(f"Unknown token command: {cmd}")
     
     def handle_voucher_commands(self, args: List[str]):
         """Handle voucher-related commands"""

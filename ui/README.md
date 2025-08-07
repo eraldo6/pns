@@ -1,6 +1,6 @@
-# Privacy Network System - Web UI
+# Euromask - Web UI
 
-A modern, interactive web interface for the Privacy Network System (PNS) that provides a visual way to interact with all system functionalities.
+A modern, interactive web interface for the Euromask (PNS) that provides a visual way to interact with all system functionalities.
 
 ## Features
 

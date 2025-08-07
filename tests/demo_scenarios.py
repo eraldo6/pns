@@ -1,6 +1,6 @@
 """
 Demo Scenarios and Tests
-Comprehensive test scenarios for the Privacy Network System
+Comprehensive test scenarios for the Euromask system
 """
 
 import sys
@@ -19,7 +19,7 @@ from zkp import ZKPManager, ZKPProof
 
 def test_wallet_creation():
     """Test wallet creation and management"""
-    print("🧪 Testing Wallet Creation...")
+    print("Testing Wallet Creation...")
     
     wallet_manager = WalletManager()
     
@@ -31,12 +31,12 @@ def test_wallet_creation():
     assert wallet1.public_key != wallet2.public_key
     assert len(wallet_manager.list_wallets()) == 2
     
-    print("✅ Wallet creation test passed")
+    print("Wallet creation test passed")
 
 
 def test_token_issuance():
     """Test token issuance and management"""
-    print("🧪 Testing Token Issuance...")
+    print("Testing Token Issuance...")
     
     wallet_manager = WalletManager()
     token_manager = TokenManager()
@@ -57,12 +57,12 @@ def test_token_issuance():
     assert len(wallet_tokens) == 2
     assert token_manager.get_total_value_by_owner(wallet.wallet_id) == 150
     
-    print("✅ Token issuance test passed")
+    print("Token issuance test passed")
 
 
 def test_voucher_system():
     """Test voucher issuance and redemption"""
-    print("🧪 Testing Voucher System...")
+    print("Testing Voucher System...")
     
     wallet_manager = WalletManager()
     voucher_manager = VoucherManager()
@@ -85,12 +85,12 @@ def test_voucher_system():
     assert voucher.is_used
     assert voucher.used_in_transaction == transaction_id
     
-    print("✅ Voucher system test passed")
+    print("Voucher system test passed")
 
 
 def test_regular_transfer():
     """Test regular (non-anonymous) token transfer"""
-    print("🧪 Testing Regular Transfer...")
+    print("Testing Regular Transfer...")
     
     # Initialize managers
     wallet_manager = WalletManager()
@@ -129,12 +129,12 @@ def test_regular_transfer():
     assert len(sender_tokens) == 0
     assert len(receiver_tokens) == 1
     
-    print("✅ Regular transfer test passed")
+    print("Regular transfer test passed")
 
 
 def test_anonymous_transfer():
     """Test anonymous token transfer with voucher"""
-    print("🧪 Testing Anonymous Transfer...")
+    print("Testing Anonymous Transfer...")
     
     # Initialize managers
     wallet_manager = WalletManager()
@@ -169,12 +169,12 @@ def test_anonymous_transfer():
     assert voucher.is_used
     assert token.owner_wallet_id == receiver.wallet_id
     
-    print("✅ Anonymous transfer test passed")
+    print("Anonymous transfer test passed")
 
 
 def test_offline_transfer():
     """Test offline transaction creation and synchronization"""
-    print("🧪 Testing Offline Transfer...")
+    print("Testing Offline Transfer...")
     
     # Initialize managers
     wallet_manager = WalletManager()
@@ -231,12 +231,12 @@ def test_offline_transfer():
     assert offline_manager.sync_with_ledger(offline_tx.offline_id)
     assert offline_tx.status.value == "synced"
     
-    print("✅ Offline transfer test passed")
+    print("Offline transfer test passed")
 
 
 def test_compliance_monitoring():
     """Test AML compliance monitoring"""
-    print("🧪 Testing Compliance Monitoring...")
+    print("Testing Compliance Monitoring...")
     
     compliance_manager = ComplianceManager()
     
@@ -275,12 +275,12 @@ def test_compliance_monitoring():
     aml_entries = compliance_manager.get_aml_entries()
     assert len(aml_entries) > 0
     
-    print("✅ Compliance monitoring test passed")
+    print("Compliance monitoring test passed")
 
 
 def test_ledger_privacy():
     """Test privacy ledger functionality"""
-    print("🧪 Testing Ledger Privacy...")
+    print("Testing Ledger Privacy...")
     
     ledger_manager = LedgerManager()
     
@@ -307,12 +307,12 @@ def test_ledger_privacy():
     assert stats['total_entries'] > 0
     assert stats['anonymous_entries'] > 0
     
-    print("✅ Ledger privacy test passed")
+    print("Ledger privacy test passed")
 
 
 def test_zkp_system():
     """Test zero-knowledge proof system"""
-    print("🧪 Testing ZKP System...")
+    print("Testing ZKP System...")
     
     wallet_manager = WalletManager()
     token_manager = TokenManager()
@@ -342,12 +342,12 @@ def test_zkp_system():
     # Verify equality proof
     assert zkp_manager.verify_equality_proof(proof2.proof_id)
     
-    print("✅ ZKP system test passed")
+    print("ZKP system test passed")
 
 
 def test_comprehensive_demo():
     """Test comprehensive system integration"""
-    print("🧪 Testing Comprehensive System Integration...")
+    print("Testing Comprehensive System Integration...")
     
     # Initialize all managers
     wallet_manager = WalletManager()
@@ -415,7 +415,7 @@ def test_comprehensive_demo():
     used_vouchers = voucher_manager.get_used_vouchers()
     assert len(used_vouchers) == 1
     
-    print("✅ Comprehensive system integration test passed")
+    print("Comprehensive system integration test passed")
 
 
 def run_all_tests():
@@ -444,9 +444,9 @@ def run_all_tests():
             test()
             passed += 1
         except Exception as e:
-            print(f"❌ Test failed: {e}")
+            print(f"Test failed: {e}")
     
-    print(f"\n📊 Test Results: {passed}/{total} tests passed")
+    print(f"\nTest Results: {passed}/{total} tests passed")
     
     if passed == total:
         print("🎉 All tests passed! System is working correctly.")

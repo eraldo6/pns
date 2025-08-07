@@ -1,10 +1,10 @@
-# 🔐 Privacy Network System (PNS)
+# Euromask (PNS)
 
 A comprehensive digital currency system with privacy features, implementing pseudonymous wallets, anonymous transactions, AML compliance, offline transfers, and zero-knowledge proofs.
 
-## 📋 Overview
+## Overview
 
-The Privacy Network System (PNS) is a complete digital currency implementation that balances privacy with regulatory compliance. It features:
+The Euromask (PNS) is a complete digital currency implementation that balances privacy with regulatory compliance. It features:
 
 - **Pseudonymous Wallets**: Cryptographic keypairs with UUID-based identification
 - **Digital Tokens**: Euro-denominated digital currency units
@@ -14,7 +14,7 @@ The Privacy Network System (PNS) is a complete digital currency implementation t
 - **Privacy Ledger**: Audit trail with privacy-preserving features
 - **Zero-Knowledge Proofs**: Cryptographic privacy verification
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -59,7 +59,7 @@ The Privacy Network System (PNS) is a complete digital currency implementation t
                     └─────────────────┘
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.8+ (uses dataclasses)
@@ -97,7 +97,7 @@ python3 src/main.py --status
 python3 src/main.py --export
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 pns/
@@ -119,7 +119,7 @@ pns/
 └── README.md              # This file
 ```
 
-## 🔧 System Components
+## System Components
 
 ### 1. Wallet System (`wallet.py`)
 - **Purpose**: Digital wallet creation and management
@@ -185,7 +185,7 @@ pns/
   - Membership proofs
   - Mock cryptographic verification
 
-## 💻 CLI Commands
+## CLI Commands
 
 ### System Commands
 ```bash
@@ -266,7 +266,7 @@ export ledger             # Export ledger data
 export zkp                # Export ZKP proofs
 ```
 
-## 🔐 Privacy Features
+## Privacy Features
 
 ### Pseudonymity
 - Wallets use UUIDs for identification
@@ -288,7 +288,7 @@ export zkp                # Export ZKP proofs
 - No immediate ledger access
 - Dual signature security
 
-## 🚨 Compliance Features
+## Compliance Features
 
 ### AML Monitoring
 - High-value transaction flagging (>€100)
@@ -302,7 +302,7 @@ export zkp                # Export ZKP proofs
 - Audit trail maintenance
 - Compliance statistics
 
-## 🧪 Testing
+## Testing
 
 Run comprehensive tests:
 ```bash
@@ -320,7 +320,7 @@ Test scenarios include:
 - ZKP system verification
 - Comprehensive system integration
 
-## 📊 Data Storage
+## Data Storage
 
 ### File-Based Storage
 - **Primary**: In-memory during runtime
@@ -334,7 +334,7 @@ Test scenarios include:
 - File-based persistence
 - No external dependencies
 
-## 🔧 Technical Implementation
+## Technical Implementation
 
 ### Cryptography (Simulated)
 - SHA-256 hashing for signatures
@@ -354,7 +354,7 @@ Test scenarios include:
 - Transaction rollback
 - System integrity checks
 
-## 🎯 Use Cases
+## Use Cases
 
 ### 1. Digital Currency Research
 - Privacy-preserving transactions
@@ -380,7 +380,7 @@ Test scenarios include:
 - Privacy vs. transparency balance
 - Authority notification systems
 
-## 🔮 Future Enhancements
+## Future Enhancements
 
 ### Planned Features
 - Real cryptographic signatures
@@ -399,11 +399,11 @@ Test scenarios include:
 - Cross-border compliance
 - Quantum-resistant cryptography
 
-## 📄 License
+## License
 
 This project is for educational and research purposes. Please ensure compliance with local regulations when implementing privacy-preserving financial systems.
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please ensure:
 - Code follows Python standards
@@ -411,7 +411,7 @@ Contributions are welcome! Please ensure:
 - Documentation is updated
 - Privacy and security are maintained
 
-## 📞 Support
+## Support
 
 For questions or issues:
 1. Check the test scenarios
@@ -421,4 +421,4 @@ For questions or issues:
 
 ---
 
-**🔐 Privacy Network System** - Balancing privacy with compliance in digital currency systems.
+** Euromask** - Balancing privacy with compliance in digital currency systems.
