@@ -1,10 +1,10 @@
 {
   "ledger_info": {
-    "created": "2025-08-07T19:48:28.030940",
-    "total_entries": 56,
-    "anonymous_count": 28,
-    "non_anonymous_count": 28,
-    "aml_flagged_count": 0
+    "created": "2025-08-08T14:32:00.817478",
+    "total_entries": 62,
+    "anonymous_count": 30,
+    "non_anonymous_count": 30,
+    "aml_flagged_count": 2
   },
   "entries": [
     {
@@ -901,6 +901,102 @@
         "voucher_id": "f859e5ec-aedf-4f30-97ff-697da088b5a4",
         "status": "completed",
         "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "56",
+      "transaction_id": "b0da2b65-076d-46fc-812b-e75b4b557341",
+      "sender_wallet_id": "80d2fce8-35a8-4136-bc46-02bb5d89f642",
+      "receiver_wallet_id": "61862185-3790-4443-b9b3-c9ea2839c971",
+      "token_id": "421ce1c1-d42c-4a82-9d1f-fd580245580e",
+      "value": 50,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-08T14:30:16.443220",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "57",
+      "transaction_id": "c3d67f7c-3447-4162-8248-7dbbb2334ca5",
+      "sender_wallet_id": "61862185-3790-4443-b9b3-c9ea2839c971",
+      "receiver_wallet_id": "0139e979-52a1-45e9-b4bb-fb6473faf93f",
+      "token_id": "d1651dfe-0683-4297-af9f-65f09123e5e2",
+      "value": 100,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-08T14:30:16.446159",
+      "metadata": {
+        "voucher_id": "d109e78a-00bc-4d0d-8e4a-b47b30527bab",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "58",
+      "transaction_id": "3807ab95-f7f3-4a99-8b1b-9054b73ad21a",
+      "sender_wallet_id": "80d2fce8-35a8-4136-bc46-02bb5d89f642",
+      "receiver_wallet_id": "61862185-3790-4443-b9b3-c9ea2839c971",
+      "token_id": "7dd78e33-66f8-4023-bf35-5d0f9b157a5d",
+      "value": 10000,
+      "is_anonymous": false,
+      "entry_type": "aml_flagged",
+      "timestamp": "2025-08-08T14:30:16.449428",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "High value transaction: \u20ac10000; Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "59",
+      "transaction_id": "323f061a-f66b-4b06-a5de-3c1819111fff",
+      "sender_wallet_id": "37d89a8d-b6a8-4060-8e75-ba0491c000cc",
+      "receiver_wallet_id": "963f4d89-02e4-4bc8-8440-c4ce75489a1b",
+      "token_id": "1d1fc8c7-746e-4883-9418-f965da4d068c",
+      "value": 50,
+      "is_anonymous": false,
+      "entry_type": "non_anonymous",
+      "timestamp": "2025-08-08T14:32:00.808893",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "Non-anonymous transaction"
+      }
+    },
+    {
+      "entry_id": "60",
+      "transaction_id": "bee4e3d7-6014-4998-bd66-2e296780ce57",
+      "sender_wallet_id": "963f4d89-02e4-4bc8-8440-c4ce75489a1b",
+      "receiver_wallet_id": "ac43c3f0-a38e-4bb7-8491-cf81e6d392d9",
+      "token_id": "23ba49f2-474f-4273-a5a5-4500655d8d18",
+      "value": 100,
+      "is_anonymous": true,
+      "entry_type": "anonymous",
+      "timestamp": "2025-08-08T14:32:00.813843",
+      "metadata": {
+        "voucher_id": "73a30fdf-8364-4a3e-8661-c070608b1b04",
+        "status": "completed",
+        "aml_reason": null
+      }
+    },
+    {
+      "entry_id": "61",
+      "transaction_id": "15df70f9-5483-47a0-aa1e-1f62e58d68c9",
+      "sender_wallet_id": "37d89a8d-b6a8-4060-8e75-ba0491c000cc",
+      "receiver_wallet_id": "963f4d89-02e4-4bc8-8440-c4ce75489a1b",
+      "token_id": "585c40b0-a4d7-4f03-8f12-114f1df16783",
+      "value": 10000,
+      "is_anonymous": false,
+      "entry_type": "aml_flagged",
+      "timestamp": "2025-08-08T14:32:00.817280",
+      "metadata": {
+        "voucher_id": null,
+        "status": "completed",
+        "aml_reason": "High value transaction: \u20ac10000; Non-anonymous transaction"
       }
     }
   ]

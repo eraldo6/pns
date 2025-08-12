@@ -109,18 +109,25 @@ class PrivacyNetworkSystem:
             tx2 = self.transaction_engine.execute_transfer(wallet2.wallet_id, wallet3.wallet_id, token2.token_id, voucher2.voucher_id)
             print(f"   Anonymous transfer completed")
             
-            # 6. Create offline transfer
-            print("6. Creating offline transfer...")
+            # 6. Execute high-value transfer (AML flagged)
+            print("6. Executing high-value transfer...")
+            # Create a high-value token for AML testing
+            high_value_token = self.token_manager.issue_token(10000, wallet1.wallet_id)
+            tx3 = self.transaction_engine.execute_transfer(wallet1.wallet_id, wallet2.wallet_id, high_value_token.token_id)
+            print(f"   High-value transfer completed ({'AML flagged' if tx3.aml_flagged else 'no flags'})")
+            
+            # 7. Create offline transfer
+            print("7. Creating offline transfer...")
             offline_tx = self.offline_manager.create_offline_transaction(wallet3.wallet_id, wallet1.wallet_id, token3.token_id)
             print(f"   Offline transfer created")
             
-            # 7. Generate ZKP proof
-            print("7. Generating zero-knowledge proof...")
+            # 8. Generate ZKP proof
+            print("8. Generating zero-knowledge proof...")
             proof = self.zkp_manager.generate_range_proof(wallet1.wallet_id, 0, 200)
             print(f"   Range proof generated")
             
-            # 8. Show system status
-            print("8. System Status:")
+            # 9. Show system status
+            print("9. System Status:")
             self._show_system_status()
             
             print("Demo completed successfully!")

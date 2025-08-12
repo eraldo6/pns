@@ -136,17 +136,8 @@ def issue_voucher():
         value_limit = float(data.get('value_limit', 50))
         issued_to_wallet_id = data.get('issued_to_wallet_id')
         
-        # Issue voucher (handle missing method)
-        try:
-            voucher = pns_system.voucher_manager.issue_voucher(value_limit, issued_to_wallet_id)
-        except AttributeError:
-            # If method doesn't exist, create a mock voucher
-            voucher = type('Voucher', (), {
-                'voucher_id': f'voucher_{uuid.uuid4().hex[:8]}',
-                'value_limit': value_limit,
-                'issued_to_wallet_id': issued_to_wallet_id,
-                'is_used': False
-            })()
+        # Issue voucher with correct parameter order
+        voucher = pns_system.voucher_manager.issue_voucher(issued_to_wallet_id, value_limit)
         socketio.emit('voucher_issued', {
             'voucher_id': voucher.voucher_id,
             'value_limit': voucher.value_limit,
@@ -473,4 +464,4 @@ if __name__ == '__main__':
     print()
     
     # Run the Flask app
-    socketio.run(app, debug=True, host='0.0.0.0', port=5000) 
+    socketio.run(app, debug=True, host='0.0.0.0', port=5000, allow_unsafe_werkzeug=True) 

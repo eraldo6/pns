@@ -61,15 +61,47 @@ The Euromask (PNS) is a complete digital currency implementation that balances p
 
 ## Quick Start
 
-### Prerequisites
-- Python 3.8+ (uses dataclasses)
-- No external dependencies required
+### Option 1: Docker (Recommended)
+The easiest way to run Euromask without installing dependencies:
 
-### Installation
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd pns
+cd euromask
+
+# Run the setup script
+./setup.sh
+
+# Start the web UI
+docker-compose --profile web up
+
+# Or run the CLI interactively
+docker run -it --rm euromask-cli cli
+
+# Or run the demo
+docker run --rm euromask-cli demo
+```
+
+**Note:** For CLI commands, you need to build the image first:
+```bash
+docker build -t euromask-cli .
+```
+```
+
+For detailed Docker instructions, see [DOCKER_README.md](DOCKER_README.md).
+
+### Option 2: Local Installation
+If you prefer to install dependencies locally:
+
+#### Prerequisites
+- Python 3.8+ (uses dataclasses)
+- No external dependencies required
+
+#### Installation
+```bash
+# Clone the repository
+git clone <repository-url>
+cd euromask
 
 # Run the system
 python3 src/main.py --demo

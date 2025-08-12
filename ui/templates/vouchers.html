@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Vouchers - Privacy Network System{% endblock %}
+{% block title %}Vouchers - Euromask{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -146,7 +146,7 @@
                             <option value="">Select a wallet...</option>
                             {% for wallet in wallets %}
                             <option value="{{ wallet.wallet_id }}">
-                                {{ wallet.wallet_id }} (€{{ wallet.token_balance }})
+                                {{ wallet.wallet_id[:8] }}... ({{ wallet.token_balance|length }} tokens)
                             </option>
                             {% endfor %}
                         </select>

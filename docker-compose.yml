@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # Euromask CLI Service
+  euromask-cli:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: euromask-cli
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./data:/app/data
+    command: ["cli"]
+    profiles:
+      - cli
+
+  # Euromask Demo Service
+  euromask-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: euromask-demo
+    volumes:
+      - ./data:/app/data
+    command: ["demo"]
+    profiles:
+      - demo
+
+  # Euromask Status Service
+  euromask-status:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: euromask-status
+    volumes:
+      - ./data:/app/data
+    command: ["status"]
+    profiles:
+      - status
+
+  # Euromask Export Service
+  euromask-export:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: euromask-export
+    volumes:
+      - ./data:/app/data
+      - ./exports:/app/exports
+    command: ["export"]
+    profiles:
+      - export
+
+  # Euromask Web UI Service
+  euromask-web:
+    build:
+      context: .
+      dockerfile: ui/Dockerfile
+    container_name: euromask-web
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+      - ./exports:/app/exports
+    environment:
+      - FLASK_ENV=development
+    profiles:
+      - web
+
+volumes:
+  data:
+  exports: 
