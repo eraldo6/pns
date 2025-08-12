@@ -90,6 +90,8 @@ docker build -t euromask-cli .
 
 For detailed Docker instructions, see [DOCKER_README.md](DOCKER_README.md).
 
+**Windows Users**: See [WINDOWS_SETUP.md](WINDOWS_SETUP.md) for Windows-specific instructions.
+
 ### Option 2: Local Installation
 If you prefer to install dependencies locally:
 
